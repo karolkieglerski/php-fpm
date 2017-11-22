@@ -1,2 +1,11 @@
 ---
-# tasks file for php-fpm
+  - include_tasks: install.yml
+    when: php_purge is not defined or not php_purge
+
+  - include_tasks: configure.yml
+    when: php_purge is not defined or not php_purge
+
+  - include_tasks: purge.yml
+    when:
+      - php_purge is defined
+      - php_purge

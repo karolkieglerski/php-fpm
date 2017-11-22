@@ -1,2 +1,14 @@
 ---
-# handlers file for php-fpm
+  - name: start_php_fpm
+    service:
+      name: "php{{ php_fpm_version }}-fpm"
+      enabled: true
+      state: started
+    when: php_fpm_purge is not defined or not php_fpm_purge
+
+  - name: restart_php_fpm
+    service:
+      name: "php{{ php_fpm_version }}-fpm"
+      enabled: true
+      state: restarted
+    when: php_fpm_purge is not defined or not php_fpm_purge

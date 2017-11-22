@@ -1,0 +1,16 @@
+---
+  - apt:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+      purge: yes
+    with_items:
+      - { name: "php-fpm", state: "absent" }
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - yum:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+      purge: yes
+    with_items:
+      - { name: "php-fpm", state: "absent" }
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

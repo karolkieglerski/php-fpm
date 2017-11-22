@@ -1,2 +1,6 @@
 ---
-# vars file for php-fpm
+  ssh_port: "{{ ansible_port }}"
+  php_fpm_version: "7.0"
+
+  php_fpm_packages:
+      - { name: "php-fpm", version: "{{ php_fpm_version }}", state: "present" }
